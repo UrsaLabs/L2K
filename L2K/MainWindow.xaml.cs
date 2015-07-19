@@ -46,7 +46,7 @@ namespace UrsaLabs.L2K {
 
 
                 InitData();
-                RefrehsPad();
+                RefreshPad();
             } catch (Exception ex) {
                 MessageBoxResult result = MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK,
                     MessageBoxImage.Error);
@@ -170,7 +170,7 @@ namespace UrsaLabs.L2K {
             toggleGui(targetName, toggleOn);
         }
 
-        private void RefrehsPad() {
+        private void RefreshPad() {
             for (int y = 0; y < 8; y++) {
                 for (int x = 0; x < 8; x++) {
                     if (data.GetShortcut(x, y) != null) {
@@ -231,7 +231,7 @@ namespace UrsaLabs.L2K {
                 }
                 data.Save();
             }
-            RefrehsPad();
+            RefreshPad();
             flagBoundButtons();
         }
 
@@ -254,7 +254,7 @@ namespace UrsaLabs.L2K {
                     data.Save();
                 }
             }
-            RefrehsPad();
+            RefreshPad();
             flagBoundButtons();
         }
 
