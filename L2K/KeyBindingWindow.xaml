@@ -1,0 +1,28 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:L2K"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="UrsaLabs.L2K.KeyBindingWindow"
+        mc:Ignorable="d"
+        Title="Assign keystroke" Height="221" Width="824" Topmost="True" WindowStartupLocation="CenterOwner" Icon="Icons/l2kicon.ico" ResizeMode="NoResize">
+    <Grid>
+        <Label x:Name="inputLabel" Content="Keystroke mapping:" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="keyboardInput" HorizontalAlignment="Left" Height="23" Margin="130,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="678" PreviewKeyDown="keyboardInput_KeyDown"/>
+        <TextBlock x:Name="introText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="65" Width="798"><Run Text="Input a keystroke in the text input bellow that you wish to bind to the selected Launchpad button."/><LineBreak/><Run Text="You can use any combination of modifier keys (Ctrl, Alt, Shift) in combination with any key on your keyboard."/><LineBreak/><Run Text="To clear an existing binding (rather than replace it with another), click inside the input box and press backspace."/><LineBreak/><Run Text="Press OK to save your changes or cancel to discard them (this doesn't apply to clearing out the saved key mapping as the process is immediate)."/></TextBlock>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="318,0,330,0">
+            <Button x:Name="ok" Content="OK" HorizontalAlignment="Left" Margin="5,0,5,20" VerticalAlignment="Top" Width="75" Click="okButton_Click"/>
+            <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="5,0,5,20" VerticalAlignment="Top" Width="75" Click="cancelButton_Click"/>
+        </StackPanel>
+        <CheckBox x:Name="toggleBox" Content="Is toggle button?" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="groupBox" HorizontalAlignment="Left" Margin="206,116,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+            <System:String>None</System:String>
+            <System:String>Group 1</System:String>
+            <System:String>Group 2</System:String>
+            <System:String>Group 3</System:String>
+            <System:String>Group 4</System:String>
+        </ComboBox>
+        <Label x:Name="groupLabel" Content="Group" HorizontalAlignment="Left" Margin="145,112,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
