@@ -102,8 +102,10 @@ namespace UrsaLabs.L2K {
                 isToggled = toggleBox.IsChecked == true;
                 shortcut.belongsToGroup = group;
                 shortcut.isToggle = isToggled;
+                DialogResult = true;
+            } else {
+                DialogResult = false;
             }
-            DialogResult = true;
         }
 
         private void keyboardInput_KeyDown(object sender, KeyEventArgs e) {

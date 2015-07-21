@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -15,12 +16,26 @@ using System.Windows.Shapes;
 using WindowsInput;
 using WindowsInput.Native;
 using IntelOrca.Launchpad;
+using Application = System.Windows.Application;
+using Button = System.Windows.Controls.Button;
+using MessageBox = System.Windows.MessageBox;
 
 namespace UrsaLabs.L2K {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
+        #region Dll Imports
+        private const uint HWND_BROADCAST = 0xFFFF;
+        private const uint WM_KEYUP = 0x0101;
+        private const uint WM_KEYDOWN = 0x0100;
+        private const uint WM_HOTKEY = 0x0312;
+
+        [DllImport("user32.dll")]
+        static extern bool PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
+
+        #endregion Dll Imports
 
         LaunchpadDevice device;
         private IKeyboardSimulator keyboard;
@@ -441,8 +456,16 @@ namespace UrsaLabs.L2K {
                     keyboard.ModifiedKeyStroke(modifiers, result);
                 }
             } else {
+                //Keys resultKey;
+                //Keys.TryParse(cut.AssignedKey, out resultKey);
+                //PostMessage((IntPtr)HWND_BROADCAST, WM_HOTKEY, (int) resultKey, 0);
                 VirtualKeyCode result;
-                bool test = VirtualKeyCode.TryParse(cut.AssignedKey, out result);
+                bool test;
+                if (cut.AssignedKey.Length < 2) {
+                    test = VirtualKeyCode.TryParse("VK_" + cut.AssignedKey.ToUpper(), out result);
+                } else {
+                    test = VirtualKeyCode.TryParse(cut.AssignedKey.ToUpper(), out result);
+                }
                 if (test) {
                     keyboard.KeyPress(result);
                 }
