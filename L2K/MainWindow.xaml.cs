@@ -451,14 +451,16 @@ namespace UrsaLabs.L2K {
                     }
                 }
                 VirtualKeyCode result;
-                bool test = VirtualKeyCode.TryParse(cut.AssignedKey.ToUpper(), out result);
+                bool test;
+                if (cut.AssignedKey.Length < 2) {
+                    test = VirtualKeyCode.TryParse("VK_" + cut.AssignedKey.ToUpper(), out result);
+                } else {
+                    test = VirtualKeyCode.TryParse(cut.AssignedKey.ToUpper(), out result);
+                }
                 if (test) {
                     keyboard.ModifiedKeyStroke(modifiers, result);
                 }
             } else {
-                //Keys resultKey;
-                //Keys.TryParse(cut.AssignedKey, out resultKey);
-                //PostMessage((IntPtr)HWND_BROADCAST, WM_HOTKEY, (int) resultKey, 0);
                 VirtualKeyCode result;
                 bool test;
                 if (cut.AssignedKey.Length < 2) {
